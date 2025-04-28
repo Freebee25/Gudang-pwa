@@ -1,6 +1,14 @@
 <script setup>
 import { computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
+import {
+  HomeIcon,
+  ArchiveBoxIcon,
+  ArrowUpTrayIcon,
+  ShoppingCartIcon,
+  ClipboardDocumentIcon
+} from '@heroicons/vue/24/solid'
+
 const props = defineProps({
   to: String,
   icon: String,
@@ -10,6 +18,14 @@ const props = defineProps({
 
 const route = useRoute()
 const isActive = computed(() => route.path === props.to)
+
+const icons = {
+  home: HomeIcon,
+  'archive-box': ArchiveBoxIcon,
+  'arrow-up-tray': ArrowUpTrayIcon,
+  'shopping-cart': ShoppingCartIcon,
+  'clipboard-document': ClipboardDocumentIcon
+}
 </script>
 
 <template>
@@ -24,33 +40,3 @@ const isActive = computed(() => route.path === props.to)
     <span v-if="!collapsed" class="truncate">{{ label }}</span>
   </router-link>
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-import {
-  HomeIcon,
-  ArchiveBoxIcon,
-  ArrowUpTrayIcon,
-  ClipboardDocumentIcon
-} from '@heroicons/vue/24/solid'
-
-export default defineComponent({
-  name: 'SidebarLink',
-  components: {
-    HomeIcon,
-    ArchiveBoxIcon,
-    ArrowUpTrayIcon,
-    ClipboardDocumentIcon,
-  },
-  data() {
-    return {
-      icons: {
-        home: HomeIcon,
-        'archive-box': ArchiveBoxIcon,
-        'arrow-up-tray': ArrowUpTrayIcon,
-        'clipboard-document': ClipboardDocumentIcon,
-      }
-    }
-  }
-})
-</script>
